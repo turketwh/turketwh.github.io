@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -38,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ece42c8223ec2bf36298a08f122c9a68.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d0cfe7a3482e0d49a74229a8f3b76718.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,6 +119,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./funding.html">
  <span class="dropdown-text">Funding</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./opportunities.html">
+ <span class="dropdown-text">Opportunities</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -160,7 +167,6 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#interests" id="toc-interests" class="nav-link active" data-scroll-target="#interests">Interests</a></li>
-  <li><a href="#note-to-students" id="toc-note-to-students" class="nav-link" data-scroll-target="#note-to-students">Note To Students</a></li>
   </ul>
 </nav>
     </div>
@@ -192,10 +198,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Historically, my research has focused on the use of Bayesian networks in decision making and in reverse engineering of biological networks from data, as well as machine learning over sequential data and graph data to infer protein function and to infer network activity intent. My thesis advisor was <a href="https://www.cse.sc.edu/~rose/">Dr.&nbsp;John Rose</a>, who directed my dissertation work on <a href="./publications.html#dissertation">Robust Multiagent Plan Generation and Execution with Decision-Theoretic Planners</a>.</p>
 <p>My focus, as of 2026, has shifted to the study of program transformations that can improve the efficiency of programs at runtime or, separately, that can facilitate program comprehension, development, and maintenance, with a particular interest in targeting programs developed for the analysis of biological data.</p>
 <p>My ORCID is: <a href="https://orcid.org/0000-0001-8024-2744">0000-0001-8024-2744</a></p>
-</section>
-<section id="note-to-students" class="level2">
-<h2 class="anchored" data-anchor-id="note-to-students">Note To Students</h2>
-<p>If you are a current WFU computer science student interested in working with me on research, please send an email. I encourage undergraduate students to look at the <a href="https://ureca.wfu.edu/student-resources/wakeforestresearchfellowship">Wake Forest Summer Research Fellowship Program</a> as a means of being paid to do research. If you are a current WFU graduate student and want to discuss research, make sure to come to my CSC 781 talk in the fall semester, then send me an email.</p>
 
 
 </section>
@@ -608,7 +610,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Copyright 2026, William Turkett</p>
 </div>   
     <div class="nav-footer-center">
-<p>Site Last Updated: 2026.07.20 - <a href="./changelog.html">Change Log</a></p>
+<p>Site Last Updated: 2026.07.26 - <a href="./changelog.html">Change Log</a></p>
 </div>
     <div class="nav-footer-right">
 <p>Developed With <a href="https://quarto.org/docs/websites">Quarto</a></p>
