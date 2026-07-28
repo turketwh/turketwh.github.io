@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="William Turkett">
+<meta name="dcterms.date" content="2026-07-28">
+<meta name="description" content="Resources for teaching deterministic finite state machines">
 
-<title>William Turkett @ WFU</title>
+<title>Teaching Deterministic Finite State Machines – William Turkett @ WFU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,22 +32,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d0cfe7a3482e0d49a74229a8f3b76718.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d0cfe7a3482e0d49a74229a8f3b76718.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,23 +75,24 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/turketwh.jpg" alt="" class="navbar-logo light-content">
-    <img src="./images/turketwh.jpg" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/turketwh.jpg" alt="" class="navbar-logo light-content">
+    <img src="../../images/turketwh.jpg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">William Turkett @ WFU</span>
     </a>
   </div>
@@ -99,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -108,19 +112,19 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
         <li>
-    <a class="dropdown-item" href="./research.html">
+    <a class="dropdown-item" href="../../research.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./publications.html">
+    <a class="dropdown-item" href="../../publications.html">
  <span class="dropdown-text">Publications</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./funding.html">
+    <a class="dropdown-item" href="../../funding.html">
  <span class="dropdown-text">Funding</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./opportunities.html">
+    <a class="dropdown-item" href="../../opportunities.html">
  <span class="dropdown-text">Opportunities</span></a>
   </li>  
     </ul>
@@ -131,21 +135,21 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-teaching">    
         <li>
-    <a class="dropdown-item" href="./teaching.html">
+    <a class="dropdown-item" href="../../teaching.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./recommendations.html"> 
+    <a class="nav-link" href="../../recommendations.html"> 
 <span class="menu-text">Recommendations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
+    <a class="nav-link" href="../../contact.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
@@ -158,7 +162,52 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Teaching Deterministic Finite State Machines</h1>
+                  <div>
+        <div class="description">
+          Resources for teaching deterministic finite state machines
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Teaching</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://turketwh.github.io">William Turkett</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://cs.wfu.edu">
+              Wake Forest University, Department of Computer Science
+              </a>
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 28, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -166,31 +215,108 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
-  <li><a href="#news" id="toc-news" class="nav-link" data-scroll-target="#news">News</a></li>
+  <li><a href="#use-then-build" id="toc-use-then-build" class="nav-link active" data-scroll-target="#use-then-build">Use Then Build</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos">Videos</a></li>
+  <li><a href="#problem-sets" id="toc-problem-sets" class="nav-link" data-scroll-target="#problem-sets">Problem Sets</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<section id="about" class="level2">
-<h2 class="anchored" data-anchor-id="about">About</h2>
-<p>William Turkett is an Associate Professor in the <a href="https://cs.wfu.edu">Department of Computer Science</a> at <a href="https://wfu.edu">Wake Forest University</a>. His BS in Computer Science was from the <a href="https://charleston.edu/compsci/">College of Charleston</a>. He received his Ph.D.&nbsp;from the <a href="https://www.cse.sc.edu">Department of Computer Science and Engineering</a> at the <a href="https://sc.edu">University of South Carolina</a>, where his research was in the area of probabilistic reasoning.</p>
-</section>
-<section id="news" class="level2">
-<h2 class="anchored" data-anchor-id="news">News</h2>
+
+<p><em>Note: All links below will open in a separate tab or window.</em></p>
+<p>I commonly teach the undergraduate <em>Programming Languages</em> course at my institution, which includes, among other topics, coverage of finite state automata, regular expressions, push down automata, grammars, and related language concepts<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. This is the first of several planned posts where I hope to share materials that I use to teach those concepts.</p>
+<p>At my institution, the <em>Programming Languages</em> course is a 200-level course, with prerequisites of a year of programming (covering through linear data structures) and a semester of discrete mathematics.</p>
+<p>As much as possible I try to teach in a <em>flipped classroom</em> style<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, with students doing preparation work before class and then us (the students in peer groups, facilitated by me) working together to solve increasingly complex problems relating to the content.</p>
+<section id="use-then-build" class="level2">
+<h2 class="anchored" data-anchor-id="use-then-build">Use Then Build</h2>
+<p>For teaching of these language concepts, I usually follow a <em>use then build</em> flow. For teaching deterministic finite state machines, that flow is as follows:</p>
 <ul>
-<li>July 2026: New personal academic website released</li>
+<li>Use
+<ul>
+<li>Identify the relationship between an alphabet and words composed of symbols from that alphabet</li>
+<li>Identify state-based properties of deterministic finite state machines
+<ul>
+<li>Count the number of states</li>
+<li>Identify the start state and the accepting state set</li>
+<li>Identify the alphabet in use (as can be observed from the machine)</li>
+<li>Identify transitions between states</li>
+<li>Identify transitions not drawn that lead to a <em>trash</em> state</li>
+<li>Determine whether a machine is a deterministic finite state machine</li>
+</ul></li>
+<li>Trace a word through a deterministic finite state machine
+<ul>
+<li>Record the states visited</li>
+<li>Indicate whether the word is accepted</li>
+</ul></li>
+<li>Interpret a finite state machine
+<ul>
+<li>Describe the properties of the words in the language the machine accepts</li>
+<li>Describe the size of the language the machine accepts</li>
+</ul></li>
+<li>Identify and remove <em>trash</em> states (states not on a path to an accepting state)</li>
+</ul></li>
+<li>Build
+<ul>
+<li>Identify the design elements being used in a deterministic finite state machine: linear ordering, branching, looping</li>
+<li>Design and test a deterministic finite state machine to accept a specified language</li>
+</ul></li>
 </ul>
+</section>
+<section id="videos" class="level2">
+<h2 class="anchored" data-anchor-id="videos">Videos</h2>
+<p>Over time, I have developed relatively short (5-10 minute) videos around some of these concepts that I ask students to watch as part of their preparation work<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<ul>
+<li>Use
+<ul>
+<li><a href="https://wakeforest.mediaspace.kaltura.com/media/CSC+231%3A+Describing+the+components+that+define+a+finite+state+machine/1_863f7ar0" target="_blank">Describing the components that define a finite state machine</a> (Length: 5 minutes, 0 seconds)</li>
+<li><a href="https://wakeforest.mediaspace.kaltura.com/media/CSC+231%3A+Tracing+a+word+in+a+finite+state+machine/1_48ljs23o" target="_blank">Tracing a word in a finite state machine</a> (Length: 7 minutes, 18 seconds)</li>
+</ul></li>
+<li>Build
+<ul>
+<li><a href="https://wakeforest.mediaspace.kaltura.com/media/CSC+231%3A+FSM+Design+Elements/1_l5t83hkh" target="_blank">FSM design elements</a> (Length: 8 minutes, 11 seconds)</li>
+</ul></li>
+</ul>
+</section>
+<section id="problem-sets" class="level2">
+<h2 class="anchored" data-anchor-id="problem-sets">Problem Sets</h2>
+<p>I typically have students work through four sets of problems:</p>
+<ul>
+<li>Preparation: To be done while doing the preparation reading and video watching</li>
+<li>Warmup: To be looked at before class, completed during class</li>
+<li>Advanced: Additional new problems completed during class</li>
+<li>Assess Yourself: Problems to be done after class as a means of gauging understanding</li>
+</ul>
+<p>In most semesters, I have students complete the <em>Preparation</em> and <em>Assess Yourself</em> problems through our Learning Management System so I can have a sense of their understanding before and after content has been covered.</p>
+<p>This <a href="../../pdfs/dfsm_problems.pdf" target="_blank">PDF</a> contains the set of problems that go along with the deterministic finite state machine material. Note that answers are not included to facilitate their reuse.</p>
+<p>I want to acknowledge the <a href="https://ivanzuzak.info/noam/webapps/fsm_simulator/" target="_blank">FSM simulator website designed by Ivan Zuzak</a> which I ask students to use for tracing and design problems (specifically, navigate to the <em>Input automaton</em> tab).</p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>We spend more time on this material in our programming languages course relative to many other institutions. I realize this is a point of debate among what should be taught in such a course.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I have found <a href="https://www.rtalbert.org/books" target="_blank">Robert Talbert’s Flipped Learning</a> book to be particularly instructive.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The preparation work also includes doing reading of associated material. The video content is generic enough that it should work alongside any relevant textbook. The videos are not comprehensive for the material covered; instead, they are additive to the reading.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{turkett2026,
+  author = {Turkett, William},
+  title = {Teaching {Deterministic} {Finite} {State} {Machines}},
+  date = {2026-07-28},
+  url = {https://turketwh.github.io/posts/20260728-TeachingDFSM/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-turkett2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Turkett, William. 2026. <span>“Teaching Deterministic Finite State
+Machines.”</span> July 28. <a href="https://turketwh.github.io/posts/20260728-TeachingDFSM/">https://turketwh.github.io/posts/20260728-TeachingDFSM/</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -598,7 +724,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Copyright 2026, William Turkett</p>
 </div>   
     <div class="nav-footer-center">
-<p>Site Last Updated: 2026.07.28 - <a href="./changelog.html">Change Log</a></p>
+<p>Site Last Updated: 2026.07.28 - <a href="../../changelog.html">Change Log</a></p>
 </div>
     <div class="nav-footer-right">
 <p>Developed With <a href="https://quarto.org/docs/websites">Quarto</a></p>
@@ -609,4 +735,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

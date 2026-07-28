@@ -4,7 +4,14 @@
     "href": "teaching.html",
     "title": "Overview",
     "section": "",
-    "text": "I have taught across much of the undergraduate curriculum in the Department of Computer Science at Wake Forest. Most recently, my focus has been on:\n\nCSC 201: Data Structures And Algorithms\nCSC 231: Programming Languages\nCSC 301: Algorithm Design And Analysis\n\nA course description for these courses can be found in the Wake Forest University Undergraduate Bulletin."
+    "text": "I have taught across much of the undergraduate curriculum in the Department of Computer Science at Wake Forest. Most recently, my focus has been on:\nA course description for these courses can be found in the Wake Forest University Undergraduate Bulletin."
+  },
+  {
+    "objectID": "teaching.html#teaching-blog-posts",
+    "href": "teaching.html#teaching-blog-posts",
+    "title": "Overview",
+    "section": "Teaching Blog Posts",
+    "text": "Teaching Blog Posts\nYou may be interested in viewing blog posts I have made related to teaching."
   },
   {
     "objectID": "recommendations.html",
@@ -28,60 +35,60 @@
     "text": "Blogs\nIn addition to those linked above under Podcasts,\n\nGrading For Growth, written by Dr. David Clark and Dr. Robert Talbert and guests\nKnowing and Doing: Reflections of an academic and computer scientist, written by Dr. Eugene Wallingford\nTeaching@WFU: A CAT Blog, written by the Wake Forest University Center for Advancement of Teaching"
   },
   {
-    "objectID": "posts/20260722-StartingABlog/index.html",
-    "href": "posts/20260722-StartingABlog/index.html",
-    "title": "Starting A Blog",
+    "objectID": "posts/20260728-TeachingDFSM/index.html",
+    "href": "posts/20260728-TeachingDFSM/index.html",
+    "title": "Teaching Deterministic Finite State Machines",
     "section": "",
-    "text": "This is a first blog entry to get things started. Hopefully many more will be on their way in the future.\n\n\n\nCitationBibTeX citation:@online{turkett2026,\n  author = {Turkett, William},\n  title = {Starting {A} {Blog}},\n  date = {2026-07-22},\n  url = {https://turketwh.github.io/posts/20260722-StartingABlog/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTurkett, William. 2026. “Starting A Blog.” July 22. https://turketwh.github.io/posts/20260722-StartingABlog/."
+    "text": "Note: All links below will open in a separate tab or window.\nI commonly teach the undergraduate Programming Languages course at my institution, which includes, among other topics, coverage of finite state automata, regular expressions, push down automata, grammars, and related language concepts1. This is the first of several planned posts where I hope to share materials that I use to teach those concepts.\nAt my institution, the Programming Languages course is a 200-level course, with prerequisites of a year of programming (covering through linear data structures) and a semester of discrete mathematics.\nAs much as possible I try to teach in a flipped classroom style2, with students doing preparation work before class and then us (the students in peer groups, facilitated by me) working together to solve increasingly complex problems relating to the content."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "William Turkett @ WFU",
-    "section": "",
-    "text": "William Turkett is an Associate Professor in the Department of Computer Science at Wake Forest University. His BS in Computer Science was from the College of Charleston. He received his Ph.D. from the Department of Computer Science and Engineering at the University of South Carolina, where his research was in the area of probabilistic reasoning."
+    "objectID": "posts/20260728-TeachingDFSM/index.html#use-then-build",
+    "href": "posts/20260728-TeachingDFSM/index.html#use-then-build",
+    "title": "Teaching Deterministic Finite State Machines",
+    "section": "Use Then Build",
+    "text": "Use Then Build\nFor teaching of these language concepts, I usually follow a use then build flow. For teaching deterministic finite state machines, that flow is as follows:\n\nUse\n\nIdentify the relationship between an alphabet and words composed of symbols from that alphabet\nIdentify state-based properties of deterministic finite state machines\n\nCount the number of states\nIdentify the start state and the accepting state set\nIdentify the alphabet in use (as can be observed from the machine)\nIdentify transitions between states\nIdentify transitions not drawn that lead to a trash state\nDetermine whether a machine is a deterministic finite state machine\n\nTrace a word through a deterministic finite state machine\n\nRecord the states visited\nIndicate whether the word is accepted\n\nInterpret a finite state machine\n\nDescribe the properties of the words in the language the machine accepts\nDescribe the size of the language the machine accepts\n\nIdentify and remove trash states (states not on a path to an accepting state)\n\nBuild\n\nIdentify the design elements being used in a deterministic finite state machine: linear ordering, branching, looping\nDesign and test a deterministic finite state machine to accept a specified language"
   },
   {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "William Turkett @ WFU",
-    "section": "",
-    "text": "William Turkett is an Associate Professor in the Department of Computer Science at Wake Forest University. His BS in Computer Science was from the College of Charleston. He received his Ph.D. from the Department of Computer Science and Engineering at the University of South Carolina, where his research was in the area of probabilistic reasoning."
+    "objectID": "posts/20260728-TeachingDFSM/index.html#videos",
+    "href": "posts/20260728-TeachingDFSM/index.html#videos",
+    "title": "Teaching Deterministic Finite State Machines",
+    "section": "Videos",
+    "text": "Videos\nOver time, I have developed relatively short (5-10 minute) videos around some of these concepts that I ask students to watch as part of their preparation work3.\n\nUse\n\nDescribing the components that define a finite state machine (Length: 5 minutes, 0 seconds)\nTracing a word in a finite state machine (Length: 7 minutes, 18 seconds)\n\nBuild\n\nFSM design elements (Length: 8 minutes, 11 seconds)"
   },
   {
-    "objectID": "index.html#news",
-    "href": "index.html#news",
-    "title": "William Turkett @ WFU",
-    "section": "News",
-    "text": "News\n\nJuly 2026: New personal academic website released"
+    "objectID": "posts/20260728-TeachingDFSM/index.html#problem-sets",
+    "href": "posts/20260728-TeachingDFSM/index.html#problem-sets",
+    "title": "Teaching Deterministic Finite State Machines",
+    "section": "Problem Sets",
+    "text": "Problem Sets\nI typically have students work through four sets of problems:\n\nPreparation: To be done while doing the preparation reading and video watching\nWarmup: To be looked at before class, completed during class\nAdvanced: Additional new problems completed during class\nAssess Yourself: Problems to be done after class as a means of gauging understanding\n\nIn most semesters, I have students complete the Preparation and Assess Yourself problems through our Learning Management System so I can have a sense of their understanding before and after content has been covered.\nThis PDF contains the set of problems that go along with the deterministic finite state machine material. Note that answers are not included to facilitate their reuse.\nI want to acknowledge the FSM simulator website designed by Ivan Zuzak which I ask students to use for tracing and design problems (specifically, navigate to the Input automaton tab)."
   },
   {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact Information",
-    "section": "",
-    "text": "I can be contacted via email at: \\(\\text{turketwh@wfu.edu}\\).\nMy office is: Alumni Hall, Room 219.\nThe street address for Alumni Hall is:\n5911 Forest Bridge Way\nWinston Salem, NC 27109\n\nTo reach me via postal mail, use:\nWilliam Turkett\nBox 7311, Computer Science\nWake Forest University\n1834 Wake Forest Rd\nWinston-Salem, NC 27109"
+    "objectID": "posts/20260728-TeachingDFSM/index.html#footnotes",
+    "href": "posts/20260728-TeachingDFSM/index.html#footnotes",
+    "title": "Teaching Deterministic Finite State Machines",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWe spend more time on this material in our programming languages course relative to many other institutions. I realize this is a point of debate among what should be taught in such a course.↩︎\nI have found Robert Talbert’s Flipped Learning book to be particularly instructive.↩︎\nThe preparation work also includes doing reading of associated material. The video content is generic enough that it should work alongside any relevant textbook. The videos are not comprehensive for the material covered; instead, they are additive to the reading.↩︎"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Turkett’s Blog",
+    "objectID": "opportunities.html",
+    "href": "opportunities.html",
+    "title": "Opportunities",
     "section": "",
-    "text": "Starting A Blog\n\n\nA first entry, hopefully among many\n\n\n\n\n\nJul 22, 2026\n\n\nWilliam Turkett\n\n\n\n\n\nNo matching items"
+    "text": "Last updated: July 26, 2026 – I do not anticipate being able to mentor students researchers during Fall 2026 and I do not currently have funding for paid research positions.\nCurrent WFU computer science students interested in working with me on research in Spring 2027 or later are welcome to send me an email. Please make sure the following information is in your email:\n\nAdd [WTPROJ] to the subject line of your email to help me differentiate inquiries about research from other emails.\nInclude in the email body\n\nYour year at Wake Forest and what your intended or declared majors and minors are\nThe semester in which you are hoping to begin research\nA short description of:\n\nResearch areas that are of interest to you\nHow those areas overlap with my work and interests as described on my research webpage\n\n\n\n\n\nFaculty in the Department of Computer Science present their research as part of a course titled CSC 781 in the Fall semester of each year. Attending these talks is a good way to learn about the faculty of and opportunities to undertake research within the Department of Computer Science.\nUndergraduate students interested in summer research funding should consider the Wake Forest Summer Research Fellowship Program. The funding for this program comes from the University. The deadline for applying for this type of funding is in the early Spring and requires engagement with and approval of the summer mentor.\nRising seniors meeting the relevant GPA thresholds will be invited by the Department of Computer Science to participate in the department’s Honors Program and complete a Senior Honors Thesis. Invitations to participate are sent to students near the start of the Fall semester and proposals are due in October. Proposals require mentor approval.\nI do not supervise research for independent study course credit.\nThe academic background needed to engage in a research project will vary based on the project. For projects I mentor that have a significant amount of programming required, it is desirable that students have completed at least through the Wake Forest CSC 201. Data Structures and Algorithms course.\n\n\n\nFaculty in the Department of Computer Science present their research as part of CSC 781, a required course for graduate students offered in the Fall semester. Graduate students should attend these presentations and reach out to faculty whose research is of interest.\nIf I have funding, I will hire graduate students to engage in research on the projects associated with that funding. I also mentor students completing a Masters thesis or project when the topics are related to my areas of interest and work.\nI do not supervise research for independent study course credit."
   },
   {
-    "objectID": "changelog.html",
-    "href": "changelog.html",
-    "title": "William Turkett @ WFU",
+    "objectID": "opportunities.html#current-wake-forest-university-students",
+    "href": "opportunities.html#current-wake-forest-university-students",
+    "title": "Opportunities",
     "section": "",
-    "text": "2026.07.26:\n\nopportunities: Added as a new page\n\n2026.07.22:\n\npublications: Added awards and summary image information\nMinor typo fixes overall\n\n2026.07.20:\n\nindex: Added News section\npublications: Added additional keyword phrases, data URLs, pdf links\nchangelog: Created document"
+    "text": "Last updated: July 26, 2026 – I do not anticipate being able to mentor students researchers during Fall 2026 and I do not currently have funding for paid research positions.\nCurrent WFU computer science students interested in working with me on research in Spring 2027 or later are welcome to send me an email. Please make sure the following information is in your email:\n\nAdd [WTPROJ] to the subject line of your email to help me differentiate inquiries about research from other emails.\nInclude in the email body\n\nYour year at Wake Forest and what your intended or declared majors and minors are\nThe semester in which you are hoping to begin research\nA short description of:\n\nResearch areas that are of interest to you\nHow those areas overlap with my work and interests as described on my research webpage\n\n\n\n\n\nFaculty in the Department of Computer Science present their research as part of a course titled CSC 781 in the Fall semester of each year. Attending these talks is a good way to learn about the faculty of and opportunities to undertake research within the Department of Computer Science.\nUndergraduate students interested in summer research funding should consider the Wake Forest Summer Research Fellowship Program. The funding for this program comes from the University. The deadline for applying for this type of funding is in the early Spring and requires engagement with and approval of the summer mentor.\nRising seniors meeting the relevant GPA thresholds will be invited by the Department of Computer Science to participate in the department’s Honors Program and complete a Senior Honors Thesis. Invitations to participate are sent to students near the start of the Fall semester and proposals are due in October. Proposals require mentor approval.\nI do not supervise research for independent study course credit.\nThe academic background needed to engage in a research project will vary based on the project. For projects I mentor that have a significant amount of programming required, it is desirable that students have completed at least through the Wake Forest CSC 201. Data Structures and Algorithms course.\n\n\n\nFaculty in the Department of Computer Science present their research as part of CSC 781, a required course for graduate students offered in the Fall semester. Graduate students should attend these presentations and reach out to faculty whose research is of interest.\nIf I have funding, I will hire graduate students to engage in research on the projects associated with that funding. I also mentor students completing a Masters thesis or project when the topics are related to my areas of interest and work.\nI do not supervise research for independent study course credit."
   },
   {
-    "objectID": "changelog.html#change-log",
-    "href": "changelog.html#change-log",
-    "title": "William Turkett @ WFU",
-    "section": "",
-    "text": "2026.07.26:\n\nopportunities: Added as a new page\n\n2026.07.22:\n\npublications: Added awards and summary image information\nMinor typo fixes overall\n\n2026.07.20:\n\nindex: Added News section\npublications: Added additional keyword phrases, data URLs, pdf links\nchangelog: Created document"
+    "objectID": "opportunities.html#future-graduate-students",
+    "href": "opportunities.html#future-graduate-students",
+    "title": "Opportunities",
+    "section": "Future Graduate Students",
+    "text": "Future Graduate Students\nPlease note that Wake Forest offers a Master of Science in Computer Science graduate degree but does not offer a PhD in Computer Science.\nIndividual faculty in the Department of Computer Science can not directly admit students into the graduate program; instead, decisions are made by a committee. If your research interests overlap with mine, please indicate as such in your application by mentioning my name and how our interests overlap as part of answering the research questions we ask applicants to address as part of their personal statement. Mentioning a faculty member does not guarantee admission nor funding as a research assistant."
   },
   {
     "objectID": "funding.html",
@@ -112,25 +119,60 @@
     "text": "Senior Researcher\n\nAn Evolutionary-Inspired Approach For Moving Target Defenses\n\nOrganization: National Science Foundation, Division of Computer And Network Systems\nProgram: Secure And Trustworthy Cyberspace\nDates: October 1, 2012 - September 30, 2015\nAward: $197,420\nPrincipal Investigator: Errin Fulp (Wake Forest University Department of Computer Science)\nAward Details\nResearch Area: Cybersecurity\n\nModeling Biological Networks In Arabidopsis Through Integration Of Genomic, Proteomic, And Metabolomic Data\n\nOrganization: National Science Foundation, Division of Integrative Organismal Systems\nProgram: Physiological Mechanisms And Biomechanics\nDates: May 1, 2009 - April 30, 2016\nAward: $1,100,278\nPrincipal Investigator: Gloria Muday (Wake Forest University Department of Biology)\nAward Details\nResearch Area: Bioinformatics"
   },
   {
-    "objectID": "opportunities.html",
-    "href": "opportunities.html",
-    "title": "Opportunities",
+    "objectID": "changelog.html",
+    "href": "changelog.html",
+    "title": "William Turkett @ WFU",
     "section": "",
-    "text": "Last updated: July 26, 2026 – I do not anticipate being able to mentor students researchers during Fall 2026 and I do not currently have funding for paid research positions.\nCurrent WFU computer science students interested in working with me on research in Spring 2027 or later are welcome to send me an email. Please make sure the following information is in your email:\n\nAdd [WTPROJ] to the subject line of your email to help me differentiate inquiries about research from other emails.\nInclude in the email body\n\nYour year at Wake Forest and what your intended or declared majors and minors are\nThe semester in which you are hoping to begin research\nA short description of:\n\nResearch areas that are of interest to you\nHow those areas overlap with my work and interests as described on my research webpage\n\n\n\n\n\nFaculty in the Department of Computer Science present their research as part of a course titled CSC 781 in the Fall semester of each year. Attending these talks is a good way to learn about the faculty of and opportunities to undertake research within the Department of Computer Science.\nUndergraduate students interested in summer research funding should consider the Wake Forest Summer Research Fellowship Program. The funding for this program comes from the University. The deadline for applying for this type of funding is in the early Spring and requires engagement with and approval of the summer mentor.\nRising seniors meeting the relevant GPA thresholds will be invited by the Department of Computer Science to participate in the department’s Honors Program and complete a Senior Honors Thesis. Invitations to participate are sent to students near the start of the Fall semester and proposals are due in October. Proposals require mentor approval.\nI do not supervise research for independent study course credit.\nThe academic background needed to engage in a research project will vary based on the project. For projects I mentor that have a significant amount of programming required, it is desirable that students have completed at least through the Wake Forest CSC 201. Data Structures and Algorithms course.\n\n\n\nFaculty in the Department of Computer Science present their research as part of CSC 781, a required course for graduate students offered in the Fall semester. Graduate students should attend these presentations and reach out to faculty whose research is of interest.\nIf I have funding, I will hire graduate students to engage in research on the projects associated with that funding. I also mentor students completing a Masters thesis or project when the topics are related to my areas of interest and work.\nI do not supervise research for independent study course credit."
+    "text": "2026.07.28:\n\nblog: New entry on Teaching DFSMs\n\n2026.07.26:\n\nopportunities: Added as a new page\n\n2026.07.22:\n\npublications: Added awards and summary image information\nMinor typo fixes overall\n\n2026.07.20:\n\nindex: Added News section\npublications: Added additional keyword phrases, data URLs, pdf links\nchangelog: Created document"
   },
   {
-    "objectID": "opportunities.html#current-wake-forest-university-students",
-    "href": "opportunities.html#current-wake-forest-university-students",
-    "title": "Opportunities",
+    "objectID": "changelog.html#change-log",
+    "href": "changelog.html#change-log",
+    "title": "William Turkett @ WFU",
     "section": "",
-    "text": "Last updated: July 26, 2026 – I do not anticipate being able to mentor students researchers during Fall 2026 and I do not currently have funding for paid research positions.\nCurrent WFU computer science students interested in working with me on research in Spring 2027 or later are welcome to send me an email. Please make sure the following information is in your email:\n\nAdd [WTPROJ] to the subject line of your email to help me differentiate inquiries about research from other emails.\nInclude in the email body\n\nYour year at Wake Forest and what your intended or declared majors and minors are\nThe semester in which you are hoping to begin research\nA short description of:\n\nResearch areas that are of interest to you\nHow those areas overlap with my work and interests as described on my research webpage\n\n\n\n\n\nFaculty in the Department of Computer Science present their research as part of a course titled CSC 781 in the Fall semester of each year. Attending these talks is a good way to learn about the faculty of and opportunities to undertake research within the Department of Computer Science.\nUndergraduate students interested in summer research funding should consider the Wake Forest Summer Research Fellowship Program. The funding for this program comes from the University. The deadline for applying for this type of funding is in the early Spring and requires engagement with and approval of the summer mentor.\nRising seniors meeting the relevant GPA thresholds will be invited by the Department of Computer Science to participate in the department’s Honors Program and complete a Senior Honors Thesis. Invitations to participate are sent to students near the start of the Fall semester and proposals are due in October. Proposals require mentor approval.\nI do not supervise research for independent study course credit.\nThe academic background needed to engage in a research project will vary based on the project. For projects I mentor that have a significant amount of programming required, it is desirable that students have completed at least through the Wake Forest CSC 201. Data Structures and Algorithms course.\n\n\n\nFaculty in the Department of Computer Science present their research as part of CSC 781, a required course for graduate students offered in the Fall semester. Graduate students should attend these presentations and reach out to faculty whose research is of interest.\nIf I have funding, I will hire graduate students to engage in research on the projects associated with that funding. I also mentor students completing a Masters thesis or project when the topics are related to my areas of interest and work.\nI do not supervise research for independent study course credit."
+    "text": "2026.07.28:\n\nblog: New entry on Teaching DFSMs\n\n2026.07.26:\n\nopportunities: Added as a new page\n\n2026.07.22:\n\npublications: Added awards and summary image information\nMinor typo fixes overall\n\n2026.07.20:\n\nindex: Added News section\npublications: Added additional keyword phrases, data URLs, pdf links\nchangelog: Created document"
   },
   {
-    "objectID": "opportunities.html#future-graduate-students",
-    "href": "opportunities.html#future-graduate-students",
-    "title": "Opportunities",
-    "section": "Future Graduate Students",
-    "text": "Future Graduate Students\nPlease note that Wake Forest offers a Master of Science in Computer Science graduate degree but does not offer a PhD in Computer Science.\nIndividual faculty in the Department of Computer Science can not directly admit students into the graduate program; instead, decisions are made by a committee. If your research interests overlap with mine, please indicate as such in your application by mentioning my name and how our interests overlap as part of answering the research questions we ask applicants to address as part of their personal statement. Mentioning a faculty member does not guarantee admission nor funding as a research assistant."
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Turkett’s Blog",
+    "section": "",
+    "text": "Teaching Deterministic Finite State Machines\n\n\n\nTeaching\n\n\n\nResources for teaching deterministic finite state machines\n\n\n\n\n\nJul 28, 2026\n\n\nWilliam Turkett\n\n\n\n\n\n\n\n\n\n\n\n\nStarting A Blog\n\n\nA first entry, hopefully among many\n\n\n\n\n\nJul 22, 2026\n\n\nWilliam Turkett\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact Information",
+    "section": "",
+    "text": "I can be contacted via email at: \\(\\text{turketwh@wfu.edu}\\).\nMy office is: Alumni Hall, Room 219.\nThe street address for Alumni Hall is:\n5911 Forest Bridge Way\nWinston Salem, NC 27109\n\nTo reach me via postal mail, use:\nWilliam Turkett\nBox 7311, Computer Science\nWake Forest University\n1834 Wake Forest Rd\nWinston-Salem, NC 27109"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "William Turkett @ WFU",
+    "section": "",
+    "text": "William Turkett is an Associate Professor in the Department of Computer Science at Wake Forest University. His BS in Computer Science was from the College of Charleston. He received his Ph.D. from the Department of Computer Science and Engineering at the University of South Carolina, where his research was in the area of probabilistic reasoning."
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "William Turkett @ WFU",
+    "section": "",
+    "text": "William Turkett is an Associate Professor in the Department of Computer Science at Wake Forest University. His BS in Computer Science was from the College of Charleston. He received his Ph.D. from the Department of Computer Science and Engineering at the University of South Carolina, where his research was in the area of probabilistic reasoning."
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "William Turkett @ WFU",
+    "section": "News",
+    "text": "News\n\nJuly 2026: New personal academic website released"
+  },
+  {
+    "objectID": "posts/20260722-StartingABlog/index.html",
+    "href": "posts/20260722-StartingABlog/index.html",
+    "title": "Starting A Blog",
+    "section": "",
+    "text": "This is a first blog entry to get things started. Hopefully many more will be on their way in the future.\n\n\n\nCitationBibTeX citation:@online{turkett2026,\n  author = {Turkett, William},\n  title = {Starting {A} {Blog}},\n  date = {2026-07-22},\n  url = {https://turketwh.github.io/posts/20260722-StartingABlog/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTurkett, William. 2026. “Starting A Blog.” July 22. https://turketwh.github.io/posts/20260722-StartingABlog/."
   },
   {
     "objectID": "publications.html",
