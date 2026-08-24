@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regular Expression Practice</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --correct-bg: #dcfce7;
+      --correct-border: #22c55e;
+      --correct-text: #166534;
+      --incorrect-bg: #fee2e2;
+      --incorrect-border: #ef4444;
+      --incorrect-text: #991b1b;
+      --nav-bg: #eef2ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(440px, 1.4fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .regex-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .regex-display {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 1.5rem;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 12px;
+      padding: 18px;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .nav-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 48px;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .nav-button {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border-radius: 50%;
+      background: var(--nav-bg);
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      line-height: 1;
+      border: 1px solid #c7d2fe;
+    }
+
+    .nav-button:hover {
+      background: #e0e7ff;
+    }
+
+    .exercise-count {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .question-header {
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) 170px 110px;
+      gap: 12px;
+      padding: 0 12px 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .question {
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) 170px 110px;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 12px;
+      margin-bottom: 12px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .word {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .choices {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .choice {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .actual {
+      font-weight: 800;
+      min-height: 1.2em;
+    }
+
+    .question.correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+      color: var(--correct-text);
+    }
+
+    .question.incorrect {
+      background: var(--incorrect-bg);
+      border-color: var(--incorrect-border);
+      color: var(--incorrect-text);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 18px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .score {
+      margin-top: 16px;
+      font-weight: 800;
+      min-height: 1.4em;
+    }
+
+    @media (max-width: 760px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .question-header {
+        display: none;
+      }
+
+      .question {
+        grid-template-columns: 1fr;
+      }
+
+      .actual::before {
+        content: "Actual: ";
+        color: var(--muted);
+        font-weight: 600;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Regular Expression Practice</h1>
+    <p class="subtitle">
+      Use the arrows to move between regular expressions, then decide whether each string belongs to the language.
+    </p>
+
+    <section class="layout">
+      <aside class="card">
+        <div class="nav-row">
+          <button class="nav-button" id="prevBtn" aria-label="Previous regular expression">←</button>
+          <div class="exercise-count" id="exerciseCount"></div>
+          <button class="nav-button" id="nextBtn" aria-label="Next regular expression">→</button>
+        </div>
+
+        <div class="regex-label">Regular Expression</div>
+        <div class="regex-display" id="regexDisplay"></div>
+      </aside>
+
+      <section class="card">
+        <div class="question-header">
+          <div>String</div>
+          <div>Your Answer</div>
+          <div>Actual</div>
+        </div>
+
+        <div id="questionList"></div>
+
+        <div class="actions">
+          <button class="primary" id="showAnswersBtn">Show Answers</button>
+          <button class="secondary" id="resetBtn">Reset This Exercise</button>
+        </div>
+
+        <div class="score" id="score"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const exercises = [
+      {
+        regexText: "a(b|c)*d",
+        regex: /^a(?:b|c)*d$/,
+        examples: ["ad", "abd", "acd", "abbd", "abcbcd", "a", "abc", "bd", "abdc", "aebd"]
+      },
+      {
+        regexText: "ab*",
+        regex: /^ab*$/,
+        examples: ["a", "ab", "abb", "abbbb", "b", "aa", "aba", "", "ac", "ba"]
+      },
+      {
+        regexText: "(ab)+",
+        regex: /^(?:ab)+$/,
+        examples: ["ab", "abab", "ababab", "a", "b", "aba", "abb", "", "abababb", "abababab"]
+      },
+      {
+        regexText: "a*b*",
+        regex: /^a*b*$/,
+        examples: ["", "a", "b", "aaa", "bbb", "aaabbb", "abab", "ba", "aabbaa", "ab"]
+      },
+      {
+        regexText: "(0|1)*01",
+        regex: /^(?:0|1)*01$/,
+        examples: ["01", "101", "0001", "1101", "1", "10", "011", "010", "1010", "11101"]
+      },
+      {
+        regexText: "1(0|1)*1",
+        regex: /^1(?:0|1)*1$/,
+        examples: ["11", "101", "111", "1001", "1", "01", "10", "1010", "11011", "000"]
+      },
+      {
+        regexText: "(cat|dog)",
+        regex: /^(?:cat|dog)$/,
+        examples: ["cat", "dog", "cats", "dogs", "catdog", "Cat", "", "do", "dogcat", "catalog"]
+      },
+      {
+        regexText: "[abc][0-9]",
+        regex: /^[abc][0-9]$/,
+        examples: ["a0", "b7", "c9", "a10", "d5", "aa", "7a", "c3", "b0", "C4"]
+      },
+      {
+        regexText: "x+y?",
+        regex: /^x+y?$/,
+        examples: ["x", "xx", "xy", "xxxy", "y", "xxyy", "", "yx", "xxx", "xyx"]
+      },
+      {
+        regexText: "(ha){2,4}",
+        regex: /^(?:ha){2,4}$/,
+        examples: ["haha", "hahaha", "hahahaha", "ha", "hahahahaha", "hah", "", "haha!", "hahah", "HAHA"]
+      }
+    ];
+
+    let currentExercise = 0;
+
+    const savedAnswers = exercises.map(() => ({}));
+    const revealed = exercises.map(() => false);
+
+    const regexDisplay = document.getElementById("regexDisplay");
+    const exerciseCount = document.getElementById("exerciseCount");
+    const questionList = document.getElementById("questionList");
+    const scoreEl = document.getElementById("score");
+
+    function renderExercise() {
+      const exercise = exercises[currentExercise];
+
+      regexDisplay.textContent = exercise.regexText;
+      exerciseCount.textContent = `Exercise ${currentExercise + 1} of ${exercises.length}`;
+      questionList.innerHTML = "";
+      scoreEl.textContent = "";
+
+      exercise.examples.forEach((word, index) => {
+        const row = document.createElement("div");
+        row.className = "question";
+        row.dataset.index = index;
+
+        row.innerHTML = `
+          <div class="word"></div>
+
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="answer-${currentExercise}-${index}" value="true">
+              True
+            </label>
+            <label class="choice">
+              <input type="radio" name="answer-${currentExercise}-${index}" value="false">
+              False
+            </label>
+          </div>
+
+          <div class="actual" aria-live="polite"></div>
+        `;
+
+        row.querySelector(".word").textContent =
+          word === "" ? '"" (empty string)' : `"${word}"`;
+
+        const saved = savedAnswers[currentExercise][index];
+        if (saved !== undefined) {
+          const input = row.querySelector(`input[value="${saved}"]`);
+          if (input) input.checked = true;
+        }
+
+        row.querySelectorAll('input[type="radio"]').forEach(input => {
+          input.addEventListener("change", () => {
+            savedAnswers[currentExercise][index] = input.value;
+
+            if (revealed[currentExercise]) {
+              gradeExercise();
+            }
+          });
+        });
+
+        questionList.appendChild(row);
+      });
+
+      if (revealed[currentExercise]) {
+        gradeExercise();
+      }
+    }
+
+    function gradeExercise() {
+      const exercise = exercises[currentExercise];
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      document.querySelectorAll(".question").forEach((row, index) => {
+        const selected = row.querySelector(
+          `input[name="answer-${currentExercise}-${index}"]:checked`
+        );
+
+        exercise.regex.lastIndex = 0;
+        const actualAnswer = exercise.regex.test(exercise.examples[index]);
+
+        const actualEl = row.querySelector(".actual");
+        actualEl.textContent = actualAnswer ? "True" : "False";
+
+        row.classList.remove("correct", "incorrect");
+
+        if (!selected) return;
+
+        answeredCount++;
+        const userAnswer = selected.value === "true";
+        const wasCorrect = userAnswer === actualAnswer;
+
+        if (wasCorrect) {
+          correctCount++;
+          row.classList.add("correct");
+        } else {
+          row.classList.add("incorrect");
+        }
+      });
+
+      scoreEl.textContent =
+        `Score: ${correctCount} correct out of ${exercise.examples.length} ` +
+        `(${answeredCount} answered).`;
+    }
+
+    function showAnswers() {
+      revealed[currentExercise] = true;
+      gradeExercise();
+    }
+
+    function resetExercise() {
+      savedAnswers[currentExercise] = {};
+      revealed[currentExercise] = false;
+      renderExercise();
+    }
+
+    function moveExercise(direction) {
+      currentExercise =
+        (currentExercise + direction + exercises.length) % exercises.length;
+      renderExercise();
+    }
+
+    document.getElementById("showAnswersBtn")
+      .addEventListener("click", showAnswers);
+
+    document.getElementById("resetBtn")
+      .addEventListener("click", resetExercise);
+
+    document.getElementById("prevBtn")
+      .addEventListener("click", () => moveExercise(-1));
+
+    document.getElementById("nextBtn")
+      .addEventListener("click", () => moveExercise(1));
+
+    document.addEventListener("keydown", event => {
+      const tag = document.activeElement.tagName;
+      if (tag === "INPUT" || tag === "BUTTON") return;
+
+      if (event.key === "ArrowLeft") moveExercise(-1);
+      if (event.key === "ArrowRight") moveExercise(1);
+    });
+
+    renderExercise();
+  </script>
+</body>
+</html>

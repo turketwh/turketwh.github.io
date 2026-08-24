@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="William Turkett">
-<meta name="dcterms.date" content="2026-07-28">
-<meta name="description" content="Resources for teaching deterministic finite state machines">
+<meta name="dcterms.date" content="2026-08-24">
+<meta name="description" content="Using generative AI to develop computer science course practice apps">
 
-<title>Teaching Deterministic Finite State Machines – William Turkett @ WFU</title>
+<title>Developing Course Practice Apps With Generative AI – William Turkett @ WFU</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,6 +77,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -165,10 +194,10 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Teaching Deterministic Finite State Machines</h1>
+      <h1 class="title">Developing Course Practice Apps With Generative AI</h1>
                   <div>
         <div class="description">
-          Resources for teaching deterministic finite state machines
+          Using generative AI to develop computer science course practice apps
         </div>
       </div>
                           <div class="quarto-categories">
@@ -199,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 28, 2026</p>
+        <p class="date">August 24, 2026</p>
       </div>
     </div>
     
@@ -210,16 +239,8 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#use-then-build" id="toc-use-then-build" class="nav-link active" data-scroll-target="#use-then-build">Use Then Build</a></li>
-  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos">Videos</a></li>
-  <li><a href="#problem-sets" id="toc-problem-sets" class="nav-link" data-scroll-target="#problem-sets">Problem Sets</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -229,93 +250,53 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><em>Note: All links below will open in a separate tab or window.</em></p>
-<p>I commonly teach the undergraduate <em>Programming Languages</em> course at my institution, which includes, among other topics, coverage of finite state automata, regular expressions, push down automata, grammars, and related language concepts<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. This is the first of several planned posts where I hope to share materials that I use to teach those concepts.</p>
-<p>At my institution, the <em>Programming Languages</em> course is a 200-level course, with prerequisites of a year of programming (covering through linear data structures) and a semester of discrete mathematics.</p>
-<p>As much as possible I try to teach in a <em>flipped classroom</em> style<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, with students doing preparation work before class and then us (the students in peer groups, facilitated by me) working together to solve increasingly complex problems relating to the content.</p>
-<section id="use-then-build" class="level2">
-<h2 class="anchored" data-anchor-id="use-then-build">Use Then Build</h2>
-<p>For teaching of these language concepts, I usually follow a <em>use then build</em> flow. For teaching deterministic finite state machines, that flow is as follows:</p>
+<p>I am still exploring in what areas I find value in the use of generative AI in my various roles as a faculty member. To date, one of the things I am finding valuable is the use of generative AI tools to develop resources that allow students to practice with computer science concepts and skills. Below I will describe and provide links to two practice applications that have been developed so far. Both were developed using ChatGPT. They are web applications, relying on HTML, CSS, and Javascript. When I develop a larger pool of these, I anticipate linking directly to them from the <em>Teaching</em> section of my website.</p>
+<p><em>I think a key takeaway for me at this point is: I don’t have strong Javascript, CSS, or aesthetic skills. While I could (and should) learn those tools, the use of generative AI for the interface and backend programming has allowed me to focus on the educational goals of developing the practice applications.</em></p>
+<p>At my institution, I commonly teach the undergraduate <em>Programming Languages</em> course, which includes, among other topics, coverage of finite state automata, regular expressions, push down automata, grammars, and related language concepts. I have also recently taught our undergraduate <em>Data Structures and Algorithms</em> course.</p>
 <ul>
-<li>Use
-<ul>
-<li>Identify the relationship between an alphabet and words composed of symbols from that alphabet</li>
-<li>Identify state-based properties of deterministic finite state machines
-<ul>
-<li>Count the number of states</li>
-<li>Identify the start state and the accepting state set</li>
-<li>Identify the alphabet in use (as can be observed from the machine)</li>
-<li>Identify transitions between states</li>
-<li>Identify transitions not drawn that lead to a <em>trash</em> state</li>
-<li>Determine whether a machine is a deterministic finite state machine</li>
-</ul></li>
-<li>Trace a word through a deterministic finite state machine
-<ul>
-<li>Record the states visited</li>
-<li>Indicate whether the word is accepted</li>
-</ul></li>
-<li>Interpret a finite state machine
-<ul>
-<li>Describe the properties of the words in the language the machine accepts</li>
-<li>Describe the size of the language the machine accepts</li>
-</ul></li>
-<li>Identify and remove <em>trash</em> states (states not on a path to an accepting state)</li>
-</ul></li>
-<li>Build
-<ul>
-<li>Identify the design elements being used in a deterministic finite state machine: linear ordering, branching, looping</li>
-<li>Design and test a deterministic finite state machine to accept a specified language</li>
-</ul></li>
+<li><p>For the <em>Programming Languages</em> course, I prompted the development of the following <em>regular expression</em> practice tool: <a href="../../apps/RegularExpressionPractice.html" target="_blank">Regular Expression Practice</a>. It presents a regular expression and a set of words. It then prompts the user to indicate whether each word can be generated from the provided regular expression. Once the user has entered <em>True</em> or <em>False</em>, they can check their work. The tool allows the user to practice with multiple regular expressions.</p></li>
+<li><p>For the <em>Data Structures And Algorithms</em> course, I usually start with students thinking about the relationship between problem input size, computational complexity (number of fundamental operations needed as a formula based on problem input size), and actual time, with questions such as: <em>If Student Susan is running an algorithm that requires <span class="math inline">\(n^{2}\)</span> fundamental operations given <span class="math inline">\(n\)</span> as an input size and running the algorithm with input of size <span class="math inline">\(100\)</span> takes <span class="math inline">\(12\)</span> hours, what size input can be used if no more than <span class="math inline">\(8\)</span> hours are available?</em> To provide opportunities for practice with this, I prompted the development of the <em>Algorithm Runtime Explorer</em> web application: <a href="../../apps/AlgorithmRuntimeExplorer.html" target="_blank">Algorithm Runtime Explorer</a>. The application allows algorithm complexity formulas and input size-to-time mappings to be entered first. A graph of input size against running time is generated, and then the user can explore other input size-to-time relationships.</p></li>
 </ul>
-</section>
-<section id="videos" class="level2">
-<h2 class="anchored" data-anchor-id="videos">Videos</h2>
-<p>Over time, I have developed relatively short (5-10 minute) videos around some of these concepts that I ask students to watch as part of their preparation work<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>To get each tool to where I wanted it required a <em>series</em> of prompts. After getting to the endpoint I was interested in on the regular expression practice tool, I asked ChatGPT to generate a singular prompt that would arrive at the same place. Below is that prompt. I have not tried the prompt myself to one-shot develop the app again, so your mileage may vary with its value, but it does aggregate what I initially prompted in a series.</p>
+<hr>
+<p><strong>Prompt:</strong></p>
+<p>Create a self-contained web application in a single HTML file, using HTML, CSS, and JavaScript, that can be opened directly in a standard web browser with no server or external libraries.</p>
+<p>The app should be a regular expression practice quiz with these features:</p>
 <ul>
-<li>Use
-<ul>
-<li><a href="https://wakeforest.mediaspace.kaltura.com/media/CSC+231%3A+Describing+the+components+that+define+a+finite+state+machine/1_863f7ar0" target="_blank">Describing the components that define a finite state machine</a> (Length: 5 minutes, 0 seconds)</li>
-<li><a href="https://wakeforest.mediaspace.kaltura.com/media/CSC+231%3A+Tracing+a+word+in+a+finite+state+machine/1_48ljs23o" target="_blank">Tracing a word in a finite state machine</a> (Length: 7 minutes, 18 seconds)</li>
-</ul></li>
-<li>Build
-<ul>
-<li><a href="https://wakeforest.mediaspace.kaltura.com/media/CSC+231%3A+FSM+Design+Elements/1_l5t83hkh" target="_blank">FSM design elements</a> (Length: 8 minutes, 11 seconds)</li>
-</ul></li>
+<li>Show a regular expression on the left side of the page.</li>
+<li>Include about 10 different regular expressions.</li>
+<li>Let the user cycle through the regular expressions using left and right arrow buttons. Navigation should wrap around from the first expression to the last and vice versa.</li>
+<li>For each regular expression, show about 10 example strings on the right side of the page.</li>
+<li>Some strings should be generated by/match the regular expression, and some should not.</li>
+<li>For every string, provide True and False radio buttons so the user can indicate whether they think the string is generated by the regular expression.</li>
+<li>Include a “Show Answers” button.</li>
+<li>When “Show Answers” is clicked, display the actual True/False answer for every string.</li>
+<li>If the user’s selected answer is correct, highlight that row green.</li>
+<li>If the user’s selected answer is incorrect, highlight that row red.</li>
+<li>Show a score indicating how many answers were correct and how many were answered.</li>
+<li>Include a “Reset This Exercise” button that resets only the currently displayed regular-expression exercise.</li>
+<li>Preserve the user’s answers and whether answers have been revealed when they move between different regular expressions.</li>
+<li>Clearly display the empty string when it appears in an exercise.</li>
+<li>Optionally support the keyboard left and right arrow keys for navigating exercises.</li>
+<li>Use a clean, modern, responsive two-column layout that becomes a single column on smaller screens.</li>
+<li>Do not include any explanation or description of what each regular expression means underneath the regular expression. Only display the regular expression itself.</li>
 </ul>
-</section>
-<section id="problem-sets" class="level2">
-<h2 class="anchored" data-anchor-id="problem-sets">Problem Sets</h2>
-<p>I typically have students work through four sets of problems:</p>
-<ul>
-<li>Preparation: To be done while doing the preparation reading and video watching</li>
-<li>Warmup: To be looked at before class, completed during class</li>
-<li>Advanced: Additional new problems completed during class</li>
-<li>Assess Yourself: Problems to be done after class as a means of gauging understanding</li>
-</ul>
-<p>In most semesters, I have students complete the <em>Preparation</em> and <em>Assess Yourself</em> problems through our Learning Management System so I can have a sense of their understanding before and after content has been covered.</p>
-<p>This <a href="../../pdfs/dfsm_problems.pdf" target="_blank">PDF</a> contains the set of problems that go along with the deterministic finite state machine material. Note that answers are not included to facilitate their reuse.</p>
-<p>I want to acknowledge the <a href="https://ivanzuzak.info/noam/webapps/fsm_simulator/" target="_blank">FSM simulator website designed by Ivan Zuzak</a> which I ask students to use for tracing and design problems (specifically, navigate to the <em>Input automaton</em> tab).</p>
+<p>Use a mixture of regular expressions involving concatenation, alternation, Kleene star, plus, optional characters, character classes, repetitions, and binary strings. Keep all exercise data in a clearly editable JavaScript array so the regular expressions and example strings can easily be changed later.</p>
+<p>Return the completed app as a downloadable <code>.html</code> file.</p>
 
 
-</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>We spend more time on this material in our programming languages course relative to many other institutions. I realize this is a point of debate among what should be taught in such a course.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>I have found <a href="https://www.rtalbert.org/books" target="_blank">Robert Talbert’s Flipped Learning</a> book to be particularly instructive.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>The preparation work also includes doing reading of associated material. The video content is generic enough that it should work alongside any relevant textbook. The videos are not comprehensive for the material covered; instead, they are additive to the reading.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{turkett2026,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{turkett2026,
   author = {Turkett, William},
-  title = {Teaching {Deterministic} {Finite} {State} {Machines}},
-  date = {2026-07-28},
-  url = {https://turketwh.github.io/posts/20260728-TeachingDFSM/},
+  title = {Developing {Course} {Practice} {Apps} {With} {Generative}
+    {AI}},
+  date = {2026-08-24},
+  url = {https://turketwh.github.io/posts/20260824-GenAIDevelopedCSPractice/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-turkett2026" class="csl-entry quarto-appendix-citeas" role="listitem">
-Turkett, William. 2026. <span>“Teaching Deterministic Finite State
-Machines.”</span> July 28. <a href="https://turketwh.github.io/posts/20260728-TeachingDFSM/">https://turketwh.github.io/posts/20260728-TeachingDFSM/</a>.
+Turkett, William. 2026. <span>“Developing Course Practice Apps With
+Generative AI.”</span> August 24. <a href="https://turketwh.github.io/posts/20260824-GenAIDevelopedCSPractice/">https://turketwh.github.io/posts/20260824-GenAIDevelopedCSPractice/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

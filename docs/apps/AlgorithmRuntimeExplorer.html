@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithm Runtime Explorer</title>
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --series: #1d4ed8;
+      --danger: #b91c1c;
+      --success: #166534;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.45;
+    }
+
+    .app {
+      width: min(1100px, calc(100% - 32px));
+      margin: 28px auto;
+    }
+
+    h1, h2, h3 { margin: 0; }
+    h1 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+    h2 { font-size: 1.15rem; }
+    h3 { font-size: 1rem; }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 6px 0 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .stack > * + * { margin-top: 14px; }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .help {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    input {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    input:focus {
+      outline: 3px solid rgba(37, 99, 235, 0.18);
+      border-color: var(--accent);
+    }
+
+    button {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+      color: var(--text);
+    }
+
+    button:hover { filter: brightness(0.98); }
+
+    .primary {
+      width: 100%;
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .row input { flex: 1; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .result {
+      display: none;
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.95rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fafafa;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .metric-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 3px 0 2px;
+    }
+
+    .metric-sub {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .status {
+      min-height: 1.2em;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .chart-section {
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .line-key {
+      width: 22px;
+      height: 3px;
+      background: var(--series);
+      display: inline-block;
+    }
+
+    .dot-key {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .chart-wrap {
+      position: relative;
+      width: 100%;
+      height: 390px;
+      margin-top: 10px;
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .explanation {
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: #f3f4f6;
+      border-radius: 5px;
+      padding: 1px 4px;
+    }
+
+    @media (max-width: 780px) {
+      .grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      .row { align-items: stretch; flex-direction: column; }
+      .chart-wrap { height: 330px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <h1>Algorithm Runtime Explorer</h1>
+    <p class="subtitle">
+      Explore how an algorithm's fundamental-operation count affects running time.
+    </p>
+
+    <div class="grid">
+      <section class="panel stack">
+        <div>
+          <h2>1. Define the algorithm</h2>
+          <div class="help">
+            Enter the number of fundamental operations as a function of <code>n</code>.
+            Supported examples include <code>n^2 / 2</code>, <code>3*n</code>,
+            <code>n*log(n)</code>, and <code>n^3+n</code>.
+          </div>
+        </div>
+
+        <label>
+          Fundamental operations
+          <input id="formula" value="n^2 / 2" />
+        </label>
+
+        <div>
+          <h3>Known measurement</h3>
+          <div class="help">Use one measured run to calibrate the model.</div>
+        </div>
+
+        <div class="two-col">
+          <label>
+            Samples
+            <input id="knownN" type="number" min="0" step="any" value="100" />
+          </label>
+
+          <label>
+            Time (hours)
+            <input id="knownT" type="number" min="0" step="any" value="24" />
+          </label>
+        </div>
+
+        <label>
+          Graph through this many samples
+          <input id="maxN" type="number" min="10" max="100000" step="10" value="1000" />
+        </label>
+
+        <button id="updateGraph" type="button" class="primary">Update graph</button>
+        <div id="formulaStatus" class="status" aria-live="polite"></div>
+      </section>
+
+      <section class="panel stack">
+        <div>
+          <h2>2. Explore</h2>
+          <div class="help">
+            Enter either a new sample count or an available running time.
+          </div>
+        </div>
+
+        <label>
+          If the number of samples is…
+          <div class="row">
+            <input id="queryN" type="number" min="0" step="any" value="240" />
+            <button id="solveTime" type="button">Find time</button>
+          </div>
+        </label>
+
+        <div id="timeResult" class="result" aria-live="polite"></div>
+
+        <label>
+          If the available time is… (hours)
+          <div class="row">
+            <input id="queryT" type="number" min="0" step="any" value="16" />
+            <button id="solveSamples" type="button">Find samples</button>
+          </div>
+        </label>
+
+        <div id="samplesResult" class="result" aria-live="polite"></div>
+
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">Estimated rate</div>
+            <div id="rateMetric" class="metric-value">—</div>
+            <div class="metric-sub">operations / hour</div>
+          </div>
+
+          <div class="metric">
+            <div class="metric-label">Highlighted point</div>
+            <div id="pointMetric" class="metric-value">—</div>
+            <div id="pointMetricSub" class="metric-sub">Choose a query</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="chart-section">
+      <div class="chart-header">
+        <div>
+          <h2>Samples vs. running time</h2>
+          <div class="help">
+            Runtime predicted from the formula and the known measurement.
+          </div>
+        </div>
+
+        <div class="legend" aria-hidden="true">
+          <span class="legend-item"><span class="line-key"></span> Predicted time</span>
+          <span class="legend-item"><span class="dot-key"></span> Selected point</span>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="chart" role="img" aria-label="Graph of samples versus predicted running time"></canvas>
+      </div>
+
+      <div class="help">
+        Horizontal axis: samples. Vertical axis: predicted time in hours.
+        The model assumes running time is proportional to the number of fundamental operations.
+      </div>
+    </section>
+
+    <section class="explanation">
+      <h2>How the model works</h2>
+      <div id="explanation" style="margin-top:8px;"></div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const el = id => document.getElementById(id);
+
+      const formulaEl = el('formula');
+      const knownNEl = el('knownN');
+      const knownTEl = el('knownT');
+      const maxNEl = el('maxN');
+      const queryNEl = el('queryN');
+      const queryTEl = el('queryT');
+      const canvas = el('chart');
+      const ctx = canvas.getContext('2d');
+
+      let model = null;
+      let selected = null;
+
+      function compileFormula(raw) {
+        let s = raw.trim().toLowerCase();
+        if (!s) throw new Error('Enter a formula.');
+
+        s = s
+          .replace(/×/g, '*')
+          .replace(/÷/g, '/')
+          .replace(/−/g, '-')
+          .replace(/\^/g, '**')
+          .replace(/\bln\s*\(/g, 'log(');
+
+        const allowedNames = ['n', 'sqrt', 'log', 'log10', 'abs', 'pow', 'exp', 'min', 'max'];
+        const words = s.match(/[a-z]+/g) || [];
+
+        for (const word of words) {
+          if (!allowedNames.includes(word)) {
+            throw new Error('Unsupported term: ' + word);
+          }
+        }
+
+        if (/[^0-9a-z+\-*/().,\s*]/i.test(s)) {
+          throw new Error('The formula contains an unsupported character.');
+        }
+
+        s = s
+          .replace(/\bsqrt\s*\(/g, 'Math.sqrt(')
+          .replace(/\blog10\s*\(/g, 'Math.log10(')
+          .replace(/\blog\s*\(/g, 'Math.log(')
+          .replace(/\babs\s*\(/g, 'Math.abs(')
+          .replace(/\bpow\s*\(/g, 'Math.pow(')
+          .replace(/\bexp\s*\(/g, 'Math.exp(')
+          .replace(/\bmin\s*\(/g, 'Math.min(')
+          .replace(/\bmax\s*\(/g, 'Math.max(');
+
+        const fn = new Function('n', '"use strict"; return (' + s + ');');
+
+        return n => {
+          const value = fn(n);
+          if (!Number.isFinite(value)) {
+            throw new Error('Formula does not produce a finite value at n = ' + n + '.');
+          }
+          if (value < 0) {
+            throw new Error('Operation count cannot be negative.');
+          }
+          return value;
+        };
+      }
+
+      function fmt(x, digits = 3) {
+        if (!Number.isFinite(x)) return '—';
+        if (Math.abs(x) >= 1000000) return x.toExponential(2);
+        if (Math.abs(x) >= 1000) {
+          return x.toLocaleString(undefined, { maximumFractionDigits: 1 });
+        }
+        if (Math.abs(x) >= 100) {
+          return x.toLocaleString(undefined, { maximumFractionDigits: 2 });
+        }
+        return x.toLocaleString(undefined, { maximumFractionDigits: digits });
+      }
+
+      function niceMax(v) {
+        if (!Number.isFinite(v) || v <= 0) return 1;
+        const p = Math.pow(10, Math.floor(Math.log10(v)));
+        const r = v / p;
+        const m = r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10;
+        return m * p;
+      }
+
+      function buildModel() {
+        const ops = compileFormula(formulaEl.value);
+        const knownN = Number(knownNEl.value);
+        const knownT = Number(knownTEl.value);
+        const maxN = Number(maxNEl.value);
+
+        if (!(knownN >= 0) || !(knownT > 0) || !(maxN > 0)) {
+          throw new Error('Known samples, known time, and graph maximum must be valid values.');
+        }
+
+        const knownOps = ops(knownN);
+        if (!(knownOps > 0)) {
+          throw new Error('The known sample count must correspond to more than zero operations.');
+        }
+
+        const hoursPerOp = knownT / knownOps;
+        const timeFor = n => ops(n) * hoursPerOp;
+        const opsPerHour = 1 / hoursPerOp;
+
+        return {
+          ops, knownN, knownT, knownOps, maxN,
+          hoursPerOp, opsPerHour, timeFor
+        };
+      }
+
+      function updateModel() {
+        try {
+          model = buildModel();
+          el('formulaStatus').textContent = 'Model ready.';
+          el('formulaStatus').style.color = 'var(--success)';
+          el('rateMetric').textContent = fmt(model.opsPerHour);
+
+          el('explanation').innerHTML =
+            `At <strong>${fmt(model.knownN)}</strong> samples, the formula gives ` +
+            `<strong>${fmt(model.knownOps)}</strong> fundamental operations. ` +
+            `Since that run takes <strong>${fmt(model.knownT)}</strong> hours, ` +
+            `the model estimates about <strong>${fmt(model.opsPerHour)}</strong> ` +
+            `fundamental operations per hour. For any new sample count <em>n</em>, ` +
+            `the app evaluates the formula at <em>n</em> and scales the time proportionally.`;
+
+          draw();
+          return true;
+        } catch (err) {
+          model = null;
+          el('formulaStatus').textContent = err.message;
+          el('formulaStatus').style.color = 'var(--danger)';
+          drawError(err.message);
+          return false;
+        }
+      }
+
+      function showResult(id, html) {
+        const node = el(id);
+        node.innerHTML = html;
+        node.style.display = 'block';
+      }
+
+      function solveTime() {
+        if (!updateModel()) return;
+
+        const n = Number(queryNEl.value);
+        if (!(n >= 0)) {
+          showResult('timeResult', 'Enter a nonnegative sample count.');
+          return;
+        }
+
+        try {
+          const t = model.timeFor(n);
+          selected = { n, t };
+
+          showResult(
+            'timeResult',
+            `<strong>${fmt(n)}</strong> samples would take approximately ` +
+            `<strong>${fmt(t)} hours</strong>.`
+          );
+
+          el('pointMetric').textContent = fmt(n);
+          el('pointMetricSub').textContent = fmt(t) + ' hours';
+          draw();
+        } catch (err) {
+          showResult('timeResult', err.message);
+        }
+      }
+
+      function solveSamples() {
+        if (!updateModel()) return;
+
+        const target = Number(queryTEl.value);
+        if (!(target >= 0)) {
+          showResult('samplesResult', 'Enter a nonnegative time.');
+          return;
+        }
+
+        try {
+          let lo = 0;
+          let hi = Math.max(model.maxN, 1);
+          let hiTime = model.timeFor(hi);
+
+          let guard = 0;
+          while (hiTime < target && hi < 1e9 && guard < 60) {
+            hi *= 2;
+            hiTime = model.timeFor(hi);
+            guard++;
+          }
+
+          if (hiTime < target) {
+            throw new Error('Could not find a sample count for that time using this formula.');
+          }
+
+          for (let i = 0; i < 80; i++) {
+            const mid = (lo + hi) / 2;
+            const tm = model.timeFor(mid);
+            if (tm <= target) lo = mid;
+            else hi = mid;
+          }
+
+          const continuousN = lo;
+          const wholeN = Math.max(0, Math.floor(continuousN + 1e-9));
+          const wholeTime = model.timeFor(wholeN);
+
+          selected = { n: wholeN, t: wholeTime };
+
+          showResult(
+            'samplesResult',
+            `The continuous solution is about <strong>${fmt(continuousN)}</strong> samples. ` +
+            `If only whole samples are allowed, the largest value that fits is ` +
+            `<strong>${wholeN.toLocaleString()}</strong> samples, taking about ` +
+            `<strong>${fmt(wholeTime)} hours</strong>.`
+          );
+
+          el('pointMetric').textContent = wholeN.toLocaleString();
+          el('pointMetricSub').textContent = fmt(wholeTime) + ' hours';
+          draw();
+        } catch (err) {
+          showResult('samplesResult', err.message);
+        }
+      }
+
+      function sizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        const w = Math.max(320, rect.width);
+        const h = Math.max(260, rect.height);
+
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        return { w, h };
+      }
+
+      function cssVar(name, fallback) {
+        const value = getComputedStyle(document.documentElement)
+          .getPropertyValue(name)
+          .trim();
+        return value || fallback;
+      }
+
+      function drawError(message) {
+        const { w, h } = sizeCanvas();
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = cssVar('--muted', '#666');
+        ctx.font = '14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(message, w / 2, h / 2);
+      }
+
+      function draw() {
+        if (!model) {
+          drawError('Enter a valid model to draw the graph.');
+          return;
+        }
+
+        const { w, h } = sizeCanvas();
+        ctx.clearRect(0, 0, w, h);
+
+        const left = 62;
+        const right = 18;
+        const top = 18;
+        const bottom = 48;
+        const pw = w - left - right;
+        const ph = h - top - bottom;
+
+        const maxN = model.maxN;
+        const samples = 240;
+        const points = [];
+        let ymax = 0;
+
+        for (let i = 0; i <= samples; i++) {
+          const n = maxN * i / samples;
+          try {
+            const t = model.timeFor(n);
+            if (Number.isFinite(t) && t >= 0) {
+              points.push({ n, t });
+              ymax = Math.max(ymax, t);
+            }
+          } catch (_) {}
+        }
+
+        if (selected && selected.n <= maxN) {
+          ymax = Math.max(ymax, selected.t);
+        }
+
+        ymax = niceMax(ymax * 1.05 || 1);
+
+        const x = n => left + (n / maxN) * pw;
+        const y = t => top + ph - (t / ymax) * ph;
+
+        const border = cssVar('--border', '#d1d5db');
+        const text = cssVar('--text', '#111827');
+        const muted = cssVar('--muted', '#6b7280');
+        const series = cssVar('--series', '#1d4ed8');
+        const accent = cssVar('--accent', '#2563eb');
+
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = border;
+        ctx.fillStyle = muted;
+        ctx.font = '12px sans-serif';
+
+        const ticks = 5;
+
+        for (let i = 0; i <= ticks; i++) {
+          const tx = left + pw * i / ticks;
+          const nVal = maxN * i / ticks;
+
+          ctx.beginPath();
+          ctx.moveTo(tx, top);
+          ctx.lineTo(tx, top + ph);
+          ctx.stroke();
+
+          ctx.textAlign = 'center';
+          ctx.fillText(fmt(nVal, 0), tx, top + ph + 22);
+
+          const ty = top + ph - ph * i / ticks;
+          const tVal = ymax * i / ticks;
+
+          ctx.beginPath();
+          ctx.moveTo(left, ty);
+          ctx.lineTo(left + pw, ty);
+          ctx.stroke();
+
+          ctx.textAlign = 'right';
+          ctx.fillText(fmt(tVal), left - 8, ty + 4);
+        }
+
+        ctx.strokeStyle = text;
+        ctx.lineWidth = 1.25;
+        ctx.beginPath();
+        ctx.moveTo(left, top);
+        ctx.lineTo(left, top + ph);
+        ctx.lineTo(left + pw, top + ph);
+        ctx.stroke();
+
+        if (points.length > 1) {
+          ctx.strokeStyle = series;
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+
+          points.forEach((p, i) => {
+            const px = x(p.n);
+            const py = y(p.t);
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          });
+
+          ctx.stroke();
+        }
+
+        if (model.knownN <= maxN) {
+          ctx.fillStyle = series;
+          ctx.beginPath();
+          ctx.arc(x(model.knownN), y(model.knownT), 4.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        if (selected && selected.n <= maxN && selected.t <= ymax) {
+          const sx = x(selected.n);
+          const sy = y(selected.t);
+
+          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = accent;
+          ctx.lineWidth = 1.2;
+
+          ctx.beginPath();
+          ctx.moveTo(sx, top + ph);
+          ctx.lineTo(sx, sy);
+          ctx.lineTo(left, sy);
+          ctx.stroke();
+
+          ctx.setLineDash([]);
+          ctx.fillStyle = accent;
+          ctx.beginPath();
+          ctx.arc(sx, sy, 6, 0, Math.PI * 2);
+          ctx.fill();
+
+          const label = `${fmt(selected.n)} samples, ${fmt(selected.t)} h`;
+          ctx.font = '12px sans-serif';
+          const textWidth = ctx.measureText(label).width;
+          const lx = Math.min(
+            Math.max(left + 5, sx + 10),
+            w - right - textWidth - 10
+          );
+          const ly = Math.max(top + 16, sy - 10);
+
+          ctx.fillStyle = text;
+          ctx.textAlign = 'left';
+          ctx.fillText(label, lx, ly);
+        }
+
+        ctx.fillStyle = text;
+        ctx.font = '13px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Samples', left + pw / 2, h - 7);
+
+        ctx.save();
+        ctx.translate(14, top + ph / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.textAlign = 'center';
+        ctx.fillText('Time (hours)', 0, 0);
+        ctx.restore();
+
+        canvas.setAttribute(
+          'aria-label',
+          `Graph from 0 to ${fmt(maxN, 0)} samples. ` +
+          `Known point: ${fmt(model.knownN)} samples and ${fmt(model.knownT)} hours` +
+          (selected
+            ? `. Selected point: ${fmt(selected.n)} samples and ${fmt(selected.t)} hours.`
+            : '.')
+        );
+      }
+
+      el('updateGraph').addEventListener('click', () => {
+        selected = null;
+        updateModel();
+      });
+
+      el('solveTime').addEventListener('click', solveTime);
+      el('solveSamples').addEventListener('click', solveSamples);
+
+      queryNEl.addEventListener('keydown', event => {
+        if (event.key === 'Enter') solveTime();
+      });
+
+      queryTEl.addEventListener('keydown', event => {
+        if (event.key === 'Enter') solveSamples();
+      });
+
+      formulaEl.addEventListener('keydown', event => {
+        if (event.key === 'Enter') updateModel();
+      });
+
+      window.addEventListener('resize', draw);
+
+      updateModel();
+      solveTime();
+    })();
+  </script>
+</body>
+</html>
